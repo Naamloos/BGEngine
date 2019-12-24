@@ -31,7 +31,8 @@ namespace BGEngine
             }
             File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), JsonConvert.SerializeObject(Config));
             Core.Initialize();
-            LibVLC = new LibVLC();
+            // repeat on -1 or 0 doesn't seem to work, so we'll just use the biggest 16-bit int possible, ooooooof
+            LibVLC = new LibVLC("--input-repeat=65535", "--autoscale", "--repeat");
 
             Application.EnableVisualStyles();
             Application.Run(new MainWindow());

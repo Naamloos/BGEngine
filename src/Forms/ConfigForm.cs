@@ -78,6 +78,7 @@ namespace BGEngine.Forms
         {
             videoopendialog.ShowHelp = true;
             videoopendialog.FileName = "vlc.exe";
+            videoopendialog.Filter = "Video Files|*.mp4;*.wmv;*.mov;*.mkv;*.avi;*.flv;";
             var res = videoopendialog.ShowDialog();
 
             if (res == DialogResult.OK)

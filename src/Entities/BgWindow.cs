@@ -53,7 +53,6 @@ namespace BGEngine
 
             var mediaplayer = new MediaPlayer(Program.LibVLC);
             var media = new Media(Program.LibVLC, mediapath);
-            media.AddOption("input -repeat=-1");
             mediaplayer.Volume = 0;
             mediaplayer.Play(media);
 

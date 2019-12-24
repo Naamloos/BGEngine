@@ -46,8 +46,9 @@
             this.RegistryLabel = new System.Windows.Forms.Label();
             this.applybtn = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
-            this.vlcopendialog = new System.Windows.Forms.OpenFileDialog();
             this.videoopendialog = new System.Windows.Forms.OpenFileDialog();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.autostart);
             this.tabPage1.Controls.Add(this.bgmodes);
             this.tabPage1.Controls.Add(this.label1);
@@ -108,9 +110,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.Size = new System.Drawing.Size(255, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Background mode";
+            this.label1.Text = "Background mode (as of right now this does nothing)";
             // 
             // tabPage2
             // 
@@ -174,6 +176,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label2);
             this.tabPage4.Controls.Add(this.autostartdisablebtn);
             this.tabPage4.Controls.Add(this.autostartenablebtn);
             this.tabPage4.Controls.Add(this.RegistryLabel);
@@ -238,15 +241,28 @@
             this.cancelbtn.UseVisualStyleBackColor = true;
             this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
             // 
-            // vlcopendialog
-            // 
-            this.vlcopendialog.FileName = "openfile";
-            this.vlcopendialog.Filter = "VLC Media Player|vlc.exe";
-            this.vlcopendialog.Title = "Find path to vlc.exe...";
-            // 
             // videoopendialog
             // 
             this.videoopendialog.FileName = "video.mp4";
+            this.videoopendialog.Filter = "*.mp4|Video files";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(301, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "This will cause BGEngine to start when you log in to Windows.";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(300, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "This will autostart the wallpaper when the program has started.";
             // 
             // ConfigForm
             // 
@@ -287,11 +303,12 @@
         private System.Windows.Forms.Button autostartenablebtn;
         private System.Windows.Forms.Label RegistryLabel;
         private System.Windows.Forms.CheckBox autostart;
-        private System.Windows.Forms.OpenFileDialog vlcopendialog;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox videopath;
         private System.Windows.Forms.Label vptext;
         private System.Windows.Forms.Button selectvideobtn;
         private System.Windows.Forms.OpenFileDialog videoopendialog;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

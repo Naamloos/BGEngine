@@ -94,6 +94,14 @@ namespace BGEngine.Forms
                 return false;
             }
 
+            var ext = Path.GetExtension(Program.Config.VideoPath);
+            var allowedexts = new string[] { ".mp4", ".wmv", ".mov", ".mkv", ".avi", ".flv" };
+
+            if (!allowedexts.Contains(ext))
+            {
+                return false;
+            }
+
             return true;
         }
 
