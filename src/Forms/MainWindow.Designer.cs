@@ -36,6 +36,8 @@
             this.startbtn = new System.Windows.Forms.Button();
             this.statustext = new System.Windows.Forms.Label();
             this.trayicon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.githublink = new System.Windows.Forms.LinkLabel();
+            this.kofilink = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +62,7 @@
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(360, 55);
             this.title.TabIndex = 1;
-            this.title.Text = "BGEngine v0.1";
+            this.title.Text = "BGEngine";
             this.title.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // configbtn
@@ -109,11 +111,35 @@
             this.trayicon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.trayicon_MouseDoubleClick);
             this.trayicon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayicon_MouseDoubleClick);
             // 
+            // githublink
+            // 
+            this.githublink.AutoSize = true;
+            this.githublink.Location = new System.Drawing.Point(284, 321);
+            this.githublink.Name = "githublink";
+            this.githublink.Size = new System.Drawing.Size(40, 13);
+            this.githublink.TabIndex = 5;
+            this.githublink.TabStop = true;
+            this.githublink.Text = "GitHub";
+            this.githublink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.githublink_LinkClicked);
+            // 
+            // kofilink
+            // 
+            this.kofilink.AutoSize = true;
+            this.kofilink.Location = new System.Drawing.Point(330, 321);
+            this.kofilink.Name = "kofilink";
+            this.kofilink.Size = new System.Drawing.Size(42, 13);
+            this.kofilink.TabIndex = 6;
+            this.kofilink.TabStop = true;
+            this.kofilink.Text = "Donate";
+            this.kofilink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.kofilink_LinkClicked);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 341);
+            this.Controls.Add(this.kofilink);
+            this.Controls.Add(this.githublink);
             this.Controls.Add(this.statustext);
             this.Controls.Add(this.startbtn);
             this.Controls.Add(this.configbtn);
@@ -141,5 +167,7 @@
         private System.Windows.Forms.Button startbtn;
         private System.Windows.Forms.Label statustext;
         private System.Windows.Forms.NotifyIcon trayicon;
+        private System.Windows.Forms.LinkLabel githublink;
+        private System.Windows.Forms.LinkLabel kofilink;
     }
 }

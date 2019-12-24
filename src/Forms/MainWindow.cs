@@ -1,8 +1,10 @@
 ﻿using BGEngine.Entities;
+using LibVLCSharp.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,7 +31,7 @@ namespace BGEngine.Forms
 
             Application.EnableVisualStyles();
 
-            if (Entry.Config.AutoStartService)
+            if (Program.Config.AutoStartService)
             {
                 // service must auto start.
                 startbtn_Click(null, null);
@@ -63,7 +65,11 @@ namespace BGEngine.Forms
                 if (!_config.Visible)
                 {
                     // config screen is disabled, starting service is allowed.
-                    _runner.Start(Entry.Config.VlcPath, $"\"{Entry.Config.VideoPath}\" {Entry.Config.VlcArgs}");
+                    //_runner.Start(Entry.Config.VlcPath, $"\"{Entry.Config.VideoPath}\" {Entry.Config.VlcArgs}");
+                    
+
+                    _runner.Start(Program.Config.VideoPath);
+
                     statustext.ForeColor = Color.Green;
                     statustext.Text = "Status: Running";
                 }
@@ -107,6 +113,16 @@ namespace BGEngine.Forms
                 this.Hide();
                 firsthide = true;
             }
+        }
+
+        private void githublink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.github.com/Naamloos/BGEngine");
+        }
+
+        private void kofilink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.ko-fi.com/Naamloos");
         }
     }
 }

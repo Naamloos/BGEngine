@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static BGEngine.BgWindow;
 
 namespace BGEngine.Entities
 {
@@ -20,19 +21,31 @@ namespace BGEngine.Entities
 
         }
 
-        public void Start(string file, string args)
+        public void Start(string file)
         {
             _killwhendone = true;
-            var process = Process.Start(file, args);
             // give the process some time to start
-            Thread.Sleep(TimeSpan.FromSeconds(3));
-            this.Start(process);
+            _running = true;
+            _window = new BgWindow(file);
+
+            _window.RemoveBorders();
+            _window.MoveToBack();
         }
 
         public void Start(Process process)
         {
             _running = true;
             _window = new BgWindow(process);
+
+            _window.RemoveBorders();
+            _window.MoveToBack();
+        }
+
+        public void Start(IntPtr handle, Action killmethod)
+        {
+            _killwhendone = true;
+            _running = true;
+            _window = new BgWindow(handle, killmethod);
 
             _window.RemoveBorders();
             _window.MoveToBack();

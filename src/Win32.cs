@@ -113,6 +113,16 @@ namespace BGEngine
         public const int WS_SYSMENU = 0x00080000;      //window with no borders etc.
         public const int WS_MINIMIZEBOX = 0x00020000;  //window with minimizebox
 
+        [DllImport("user32.dll")]
+        public static extern bool InvalidateRect(IntPtr hWnd, IntPtr lpRect, bool bErase);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+
+        public const int SPI_SETDESKWALLPAPER = 20;
+        public const int SPIF_UPDATEINIFILE = 0x01;
+        public const int SPIF_SENDWININICHANGE = 0x02;
+
         [Flags]
         public enum SendMessageTimeoutFlags : uint
         {

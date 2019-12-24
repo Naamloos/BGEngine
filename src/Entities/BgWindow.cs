@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LibVLCSharp.Shared;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,15 +12,19 @@ namespace BGEngine
     public class BgWindow
     {
         private Process _process;
+        private MediaPlayer _mediaplayer;
+
         private bool _isOnBackground;
         private bool _isHiddenBorder;
         private int _oldBorder;
         private IntPtr _workerw;
-        private IntPtr _handle => _process.MainWindowHandle;
+        private IntPtr _handle;
+        private Action _killwindow;
 
         public BgWindow(Process process)
         {
             this._process = process;
+            this._handle = process.MainWindowHandle;
             this._isOnBackground = false;
             this._isHiddenBorder = false;
 
@@ -26,10 +32,60 @@ namespace BGEngine
             findWorkerW();
         }
 
+        public BgWindow(IntPtr handle, Action killwindow)
+        {
+            this._handle = handle;
+            this._process = null;
+            this._isOnBackground = false;
+            this._isHiddenBorder = false;
+            this._killwindow = killwindow;
+
+            // We're going to look for the workerw
+            findWorkerW();
+        }
+
+        public BgWindow(string mediapath)
+        {
+            // We're going to look for the workerw
+            findWorkerW();
+            this._isOnBackground = false;
+            this._isHiddenBorder = false;
+
+            var mediaplayer = new MediaPlayer(Program.LibVLC);
+            var media = new Media(Program.LibVLC, mediapath);
+            media.AddOption("input -repeat=-1");
+            mediaplayer.Volume = 0;
+            mediaplayer.Play(media);
+
+            this._mediaplayer = mediaplayer;
+        }
+
         public void Kill()
         {
-            if(!_process.HasExited)
-                _process.Kill();
+            if (_process != null)
+            {
+                if (!_process.HasExited)
+                    _process.Kill();
+            }
+            if (this._killwindow != null)
+            {
+                this._killwindow();
+            }
+            if(this._mediaplayer != null)
+            {
+                this._mediaplayer.Stop();
+            }
+
+            IntPtr dc = Win32.GetDCEx(_workerw, IntPtr.Zero, (Win32.DeviceContextValues)0x403);
+            Win32.ReleaseDC(_workerw, dc);
+
+            // resetting wallpaper
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
+
+            Win32.SystemParametersInfo(Win32.SPI_SETDESKWALLPAPER,
+                0,
+                (string)key.GetValue("Wallpaper"),
+                Win32.SPIF_UPDATEINIFILE | Win32.SPIF_SENDWININICHANGE);
         }
 
         public void MoveToBack()
@@ -37,8 +93,15 @@ namespace BGEngine
             // We'll set the window's parent handle to the bg handle.
             if (!this._isOnBackground)
             {
-                Win32.SetParent(this._handle, this._workerw);
-                Win32.SetWindowPos(this._handle, Win32.HWND_TOP, 0, 0, 1920, 1080, Win32.SWP_SHOWWINDOW);
+                if (this._handle != null)
+                {
+                    Win32.SetParent(this._handle, this._workerw);
+                    Win32.SetWindowPos(this._handle, Win32.HWND_TOP, 0, 0, 1920, 1080, Win32.SWP_SHOWWINDOW);
+                }
+                if(this._mediaplayer != null)
+                {
+                    this._mediaplayer.Hwnd = _workerw;
+                }
                 this._isOnBackground = true;
             }
         }
@@ -47,8 +110,15 @@ namespace BGEngine
         {
             if (this._isOnBackground)
             {
-                Win32.SetParent(this._handle, IntPtr.Zero);
-                Win32.SetWindowPos(this._handle, Win32.HWND_TOP, 25, 25, 500, 250, Win32.SWP_SHOWWINDOW);
+                if (this._handle != null)
+                {
+                    Win32.SetParent(this._handle, IntPtr.Zero);
+                    Win32.SetWindowPos(this._handle, Win32.HWND_TOP, 25, 25, 500, 250, Win32.SWP_SHOWWINDOW);
+                }
+                if(this._mediaplayer != null)
+                {
+                    this._mediaplayer.Hwnd = IntPtr.Zero;
+                }
                 this._isOnBackground = false;
             }
         }
@@ -57,8 +127,11 @@ namespace BGEngine
         {
             if (!_isHiddenBorder)
             {
-                this._oldBorder = Win32.GetWindowLong(this._handle, Win32.GWL_STYLE);
-                Win32.SetWindowLong(this._handle, Win32.GWL_STYLE, Win32.WS_SYSMENU);
+                if (this._handle != null)
+                {
+                    this._oldBorder = Win32.GetWindowLong(this._handle, Win32.GWL_STYLE);
+                    Win32.SetWindowLong(this._handle, Win32.GWL_STYLE, Win32.WS_SYSMENU);
+                }
                 this._isHiddenBorder = true;
             }
         }
@@ -67,7 +140,10 @@ namespace BGEngine
         {
             if (this._isHiddenBorder)
             {
-                Win32.SetWindowLong(this._handle, Win32.GWL_STYLE, this._oldBorder);
+                if (this._handle != null)
+                {
+                    Win32.SetWindowLong(this._handle, Win32.GWL_STYLE, this._oldBorder);
+                }
                 this._isHiddenBorder = false;
             }
         }
@@ -104,7 +180,7 @@ namespace BGEngine
                 if (p != IntPtr.Zero)
                 {
                     // Gets the WorkerW Window after the current one.
-                    _workerw = Win32.FindWindowEx(IntPtr.Zero,
+                    this._workerw = Win32.FindWindowEx(IntPtr.Zero,
                                                tophandle,
                                                "WorkerW",
                                                "");

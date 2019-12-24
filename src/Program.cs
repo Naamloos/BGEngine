@@ -1,5 +1,6 @@
 ﻿using BGEngine.Entities;
 using BGEngine.Forms;
+using LibVLCSharp.Shared;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ using System.Windows.Forms;
 
 namespace BGEngine
 {
-    class Entry
+    class Program
     {
-        static MainWindow main;
+        internal static LibVLC LibVLC;
         internal static Config Config;
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -28,6 +30,8 @@ namespace BGEngine
                 File.Create(Path.Combine(Application.StartupPath, "config.json")).Close();
             }
             File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), JsonConvert.SerializeObject(Config));
+            Core.Initialize();
+            LibVLC = new LibVLC();
 
             Application.EnableVisualStyles();
             Application.Run(new MainWindow());

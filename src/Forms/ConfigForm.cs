@@ -20,7 +20,7 @@ namespace BGEngine.Forms
         {
             InitializeComponent();
             bgmodes.Items.Add(Entities.BackgroundMode.Video);
-            bgmodes.Items.Add(Entities.BackgroundMode.Window);
+            bgmodes.Items.Add(Entities.BackgroundMode.Plugin);
 
             var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
             RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
@@ -28,23 +28,19 @@ namespace BGEngine.Forms
             RegistryLabel.Text = $"Autostart enabled: {key.GetValueNames().Contains("BGEngine")}";
 
             // preset values in config
-            bgmodes.SelectedItem = Entry.Config.BackgroundMode;
-            autostart.Checked = Entry.Config.AutoStartService;
-            vlcpath.Text = Entry.Config.VlcPath;
-            vlcargs.Text = Entry.Config.VlcArgs;
-            videopath.Text = Entry.Config.VideoPath;
+            bgmodes.SelectedItem = Program.Config.BackgroundMode;
+            autostart.Checked = Program.Config.AutoStartService;
+            videopath.Text = Program.Config.VideoPath;
         }
 
         private void applybtn_Click(object sender, EventArgs e)
         {
             // apply
-            Entry.Config.BackgroundMode = (BackgroundMode)bgmodes.SelectedItem;
-            Entry.Config.AutoStartService = autostart.Checked;
-            Entry.Config.VlcPath = vlcpath.Text;
-            Entry.Config.VlcArgs = vlcargs.Text;
-            Entry.Config.VideoPath = videopath.Text;
+            Program.Config.BackgroundMode = (BackgroundMode)bgmodes.SelectedItem;
+            Program.Config.AutoStartService = autostart.Checked;
+            Program.Config.VideoPath = videopath.Text;
 
-            File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), JsonConvert.SerializeObject(Entry.Config));
+            File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), JsonConvert.SerializeObject(Program.Config));
             this.Close();
         }
 
@@ -76,18 +72,6 @@ namespace BGEngine.Forms
             RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
             key.DeleteValue("BGEngine", false);
             RegistryLabel.Text = $"Autostart enabled: {key.GetValueNames().Contains("BGEngine")}";
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            vlcopendialog.ShowHelp = true;
-            vlcopendialog.FileName = "vlc.exe";
-            var res = vlcopendialog.ShowDialog();
-
-            if(res == DialogResult.OK)
-            {
-                this.vlcpath.Text = vlcopendialog.FileName;
-            }
         }
 
         private void selectvideobtn_Click(object sender, EventArgs e)

@@ -13,10 +13,7 @@ namespace BGEngine.Entities
         public bool HideBorders = true;
 
         [JsonProperty("backgroundmode")]
-        public BackgroundMode BackgroundMode;
-
-        [JsonProperty("vlcpath")]
-        public string VlcPath = "vlc";
+        public BackgroundMode BackgroundMode = BackgroundMode.Video;
 
         [JsonProperty("vlcargs")]
         public string VlcArgs = "--loop --fullscreen --no-osd --gain=0 --qt-minimal-view --quiet --qt-auto-raise=0 -Idummy --no-qt-system-tray";
@@ -30,7 +27,7 @@ namespace BGEngine.Entities
 
     public enum BackgroundMode
     {
-        Window,
+        Plugin,
         Video
     }
 }

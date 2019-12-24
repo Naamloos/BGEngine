@@ -38,11 +38,6 @@
             this.selectvideobtn = new System.Windows.Forms.Button();
             this.videopath = new System.Windows.Forms.TextBox();
             this.vptext = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.vlcargs = new System.Windows.Forms.TextBox();
-            this.selectvlcbtn = new System.Windows.Forms.Button();
-            this.vlcpath = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -122,11 +117,6 @@
             this.tabPage2.Controls.Add(this.selectvideobtn);
             this.tabPage2.Controls.Add(this.videopath);
             this.tabPage2.Controls.Add(this.vptext);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.vlcargs);
-            this.tabPage2.Controls.Add(this.selectvlcbtn);
-            this.tabPage2.Controls.Add(this.vlcpath);
-            this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -137,7 +127,7 @@
             // 
             // selectvideobtn
             // 
-            this.selectvideobtn.Location = new System.Drawing.Point(678, 100);
+            this.selectvideobtn.Location = new System.Drawing.Point(678, 19);
             this.selectvideobtn.Name = "selectvideobtn";
             this.selectvideobtn.Size = new System.Drawing.Size(84, 20);
             this.selectvideobtn.TabIndex = 7;
@@ -148,7 +138,7 @@
             // videopath
             // 
             this.videopath.Enabled = false;
-            this.videopath.Location = new System.Drawing.Point(6, 100);
+            this.videopath.Location = new System.Drawing.Point(6, 19);
             this.videopath.Name = "videopath";
             this.videopath.Size = new System.Drawing.Size(666, 20);
             this.videopath.TabIndex = 6;
@@ -156,54 +146,11 @@
             // vptext
             // 
             this.vptext.AutoSize = true;
-            this.vptext.Location = new System.Drawing.Point(6, 84);
+            this.vptext.Location = new System.Drawing.Point(6, 3);
             this.vptext.Name = "vptext";
             this.vptext.Size = new System.Drawing.Size(59, 13);
             this.vptext.TabIndex = 5;
             this.vptext.Text = "Video Path";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 44);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(279, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "VLC Arguments (Recommended to keep these defaulted.)";
-            // 
-            // vlcargs
-            // 
-            this.vlcargs.Location = new System.Drawing.Point(6, 61);
-            this.vlcargs.Name = "vlcargs";
-            this.vlcargs.Size = new System.Drawing.Size(756, 20);
-            this.vlcargs.TabIndex = 3;
-            // 
-            // selectvlcbtn
-            // 
-            this.selectvlcbtn.Location = new System.Drawing.Point(678, 19);
-            this.selectvlcbtn.Name = "selectvlcbtn";
-            this.selectvlcbtn.Size = new System.Drawing.Size(84, 20);
-            this.selectvlcbtn.TabIndex = 2;
-            this.selectvlcbtn.Text = "Select...";
-            this.selectvlcbtn.UseVisualStyleBackColor = true;
-            this.selectvlcbtn.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // vlcpath
-            // 
-            this.vlcpath.Enabled = false;
-            this.vlcpath.Location = new System.Drawing.Point(6, 19);
-            this.vlcpath.Name = "vlcpath";
-            this.vlcpath.Size = new System.Drawing.Size(666, 20);
-            this.vlcpath.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "VLC Path";
             // 
             // tabPage3
             // 
@@ -213,7 +160,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(768, 385);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Window-background Settings";
+            this.tabPage3.Text = "Plugin-background Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // label4
@@ -339,11 +286,6 @@
         private System.Windows.Forms.Button autostartdisablebtn;
         private System.Windows.Forms.Button autostartenablebtn;
         private System.Windows.Forms.Label RegistryLabel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox vlcargs;
-        private System.Windows.Forms.Button selectvlcbtn;
-        private System.Windows.Forms.TextBox vlcpath;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox autostart;
         private System.Windows.Forms.OpenFileDialog vlcopendialog;
         private System.Windows.Forms.Label label4;
