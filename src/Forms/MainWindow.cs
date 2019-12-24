@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,15 +17,14 @@ namespace BGEngine.Forms
 {
     public partial class MainWindow : Form
     {
-        private bool _active = false;
         private ConfigForm _config;
         private BgRunner _runner;
+
         public MainWindow()
         {
             InitializeComponent();
             _config = new ConfigForm();
             _runner = new BgRunner();
-            _active = false;
             this.Hide();
             trayicon.Visible = true;
             trayicon.ShowBalloonTip(2000);
@@ -53,6 +53,12 @@ namespace BGEngine.Forms
 
         private void startbtn_Click(object sender, EventArgs e)
         {
+            if (!ValidateSettings())
+            {
+                MessageBox.Show("Your current configuration for BGEngine is invalid. Check your config.");
+                return;
+            }
+
             if (this._runner.Running)
             {
                 _runner.Stop();
@@ -75,6 +81,20 @@ namespace BGEngine.Forms
                 }
                 startbtn.Text = "Stop";
             }
+        }
+        
+        /// <summary>
+        /// Validates settings.
+        /// </summary>
+        /// <returns>Returns true if settings are valid, else false.</returns>
+        private bool ValidateSettings()
+        {
+            if (!File.Exists(Program.Config.VideoPath))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void trayicon_MouseDoubleClick(object sender, MouseEventArgs e)
