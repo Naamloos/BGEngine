@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BGEngine
 {
@@ -117,7 +118,16 @@ namespace BGEngine
                 if (this._handle != null)
                 {
                     Win32.SetParent(this._handle, this._workerw);
-                    Win32.SetWindowPos(this._handle, Win32.HWND_TOP, 0, 0, 1920, 1080, Win32.SWP_SHOWWINDOW);
+                    var b = Screen.PrimaryScreen.Bounds;
+
+                    // TODO multiscreen
+                    foreach(var screen in Screen.AllScreens)
+                    {
+                        //b = screen.Bounds;
+                        //MessageBox.Show($"x{b.X}, y{b.Y}, w{b.Width}, h{b.Height}");
+                    }
+
+                    Win32.SetWindowPos(this._handle, Win32.HWND_TOP, b.X, b.Y, b.Width, b.Height, Win32.SWP_SHOWWINDOW);
                 }
                 if(this._mediaplayer != null)
                 {
