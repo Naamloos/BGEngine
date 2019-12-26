@@ -16,6 +16,7 @@ namespace BGEngine
     {
         internal static LibVLC LibVLC;
         internal static Config Config;
+        internal static PluginManager Plugins;
 
         [STAThread]
         static void Main(string[] args)
@@ -33,6 +34,9 @@ namespace BGEngine
             Core.Initialize();
             // repeat on -1 or 0 doesn't seem to work, so we'll just use the biggest 16-bit int possible, ooooooof
             LibVLC = new LibVLC("--input-repeat=65535", "--autoscale", "--repeat");
+
+            Plugins = new PluginManager();
+            Plugins.PreloadPlugins();
 
             Application.EnableVisualStyles();
             Application.Run(new MainWindow());

@@ -9,14 +9,17 @@ namespace BGEngine.Entities
 {
     public class Config
     {
-        [JsonProperty("backgroundmode")]
+        [JsonProperty("backgroundmode", NullValueHandling = NullValueHandling.Ignore)]
         public BackgroundMode BackgroundMode = BackgroundMode.Video;
 
-        [JsonProperty("videopath")]
+        [JsonProperty("videopath", NullValueHandling = NullValueHandling.Ignore)]
         public string VideoPath = "";
 
-        [JsonProperty("autostart-service")]
+        [JsonProperty("autostart-service", NullValueHandling = NullValueHandling.Ignore)]
         public bool AutoStartService = false;
+
+        [JsonProperty("selectedpluginid", NullValueHandling = NullValueHandling.Ignore)]
+        public string SelectedPluginId = "";
     }
 
     public enum BackgroundMode

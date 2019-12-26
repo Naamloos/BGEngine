@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.autostart = new System.Windows.Forms.CheckBox();
             this.bgmodes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,15 +41,16 @@
             this.vptext = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
+            this.pluginlistbox = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.autostartdisablebtn = new System.Windows.Forms.Button();
             this.autostartenablebtn = new System.Windows.Forms.Button();
             this.RegistryLabel = new System.Windows.Forms.Label();
             this.applybtn = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.videoopendialog = new System.Windows.Forms.OpenFileDialog();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.pluginconfigbtn = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -85,6 +87,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(300, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "This will autostart the wallpaper when the program has started.";
             // 
             // autostart
             // 
@@ -156,7 +167,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.pluginconfigbtn);
             this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.pluginlistbox);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -168,11 +181,22 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(141, 102);
+            this.label4.Location = new System.Drawing.Point(7, 317);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "soon, i promise. kek";
+            this.label4.Size = new System.Drawing.Size(182, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Someday, we will see metadata here.";
+            // 
+            // pluginlistbox
+            // 
+            this.pluginlistbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pluginlistbox.FormattingEnabled = true;
+            this.pluginlistbox.Location = new System.Drawing.Point(7, 7);
+            this.pluginlistbox.Name = "pluginlistbox";
+            this.pluginlistbox.Size = new System.Drawing.Size(755, 303);
+            this.pluginlistbox.TabIndex = 0;
+            this.pluginlistbox.SelectedIndexChanged += new System.EventHandler(this.pluginlistbox_SelectedIndexChanged);
             // 
             // tabPage4
             // 
@@ -188,6 +212,15 @@
             this.tabPage4.Text = "Registry Settings";
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(301, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "This will cause BGEngine to start when you log in to Windows.";
             // 
             // autostartdisablebtn
             // 
@@ -246,23 +279,16 @@
             this.videoopendialog.FileName = "video.mp4";
             this.videoopendialog.Filter = "*.mp4|Video files";
             // 
-            // label2
+            // pluginconfigbtn
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(301, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "This will cause BGEngine to start when you log in to Windows.";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(300, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "This will autostart the wallpaper when the program has started.";
+            this.pluginconfigbtn.Enabled = false;
+            this.pluginconfigbtn.Location = new System.Drawing.Point(643, 316);
+            this.pluginconfigbtn.Name = "pluginconfigbtn";
+            this.pluginconfigbtn.Size = new System.Drawing.Size(119, 23);
+            this.pluginconfigbtn.TabIndex = 2;
+            this.pluginconfigbtn.Text = "Open Plugin Config";
+            this.pluginconfigbtn.UseVisualStyleBackColor = true;
+            this.pluginconfigbtn.Click += new System.EventHandler(this.pluginconfigbtn_Click);
             // 
             // ConfigForm
             // 
@@ -273,6 +299,8 @@
             this.Controls.Add(this.applybtn);
             this.Controls.Add(this.tabs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(816, 496);
+            this.MinimumSize = new System.Drawing.Size(816, 496);
             this.Name = "ConfigForm";
             this.Text = "Config";
             this.tabs.ResumeLayout(false);
@@ -303,12 +331,14 @@
         private System.Windows.Forms.Button autostartenablebtn;
         private System.Windows.Forms.Label RegistryLabel;
         private System.Windows.Forms.CheckBox autostart;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox videopath;
         private System.Windows.Forms.Label vptext;
         private System.Windows.Forms.Button selectvideobtn;
         private System.Windows.Forms.OpenFileDialog videoopendialog;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox pluginlistbox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button pluginconfigbtn;
     }
 }

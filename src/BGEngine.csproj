@@ -101,6 +101,8 @@
     <Compile Include="Entities\BgRunner.cs" />
     <Compile Include="Entities\BgWindow.cs" />
     <Compile Include="Entities\Config.cs" />
+    <Compile Include="Entities\ListPlugin.cs" />
+    <Compile Include="Entities\PluginManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Forms\ConfigForm.cs">
       <SubType>Form</SubType>
@@ -181,6 +183,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BGEngine.Sdk\BGEngine.Sdk.csproj">
+      <Project>{A7C3A34D-A38B-46D2-AEB2-C5297DEF44CF}</Project>
+      <Name>BGEngine.Sdk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\VideoLAN.LibVLC.Windows.3.0.8.1\build\VideoLAN.LibVLC.Windows.targets" Condition="Exists('packages\VideoLAN.LibVLC.Windows.3.0.8.1\build\VideoLAN.LibVLC.Windows.targets')" />

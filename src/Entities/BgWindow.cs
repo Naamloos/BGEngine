@@ -1,4 +1,5 @@
-﻿using LibVLCSharp.Shared;
+﻿using BGEngine.Sdk;
+using LibVLCSharp.Shared;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace BGEngine
     {
         private Process _process;
         private MediaPlayer _mediaplayer;
+        private IPlugin _plugin;
 
         private bool _isOnBackground;
         private bool _isHiddenBorder;
@@ -25,6 +27,22 @@ namespace BGEngine
         {
             this._process = process;
             this._handle = process.MainWindowHandle;
+            this._isOnBackground = false;
+            this._isHiddenBorder = false;
+
+            // We're going to look for the workerw
+            findWorkerW();
+        }
+
+        public BgWindow(IPlugin plugin)
+        {
+            this._plugin = plugin;
+            // Does nothing right now
+            this._plugin.SendMonitorSizes(new List<MonitorSize>());
+
+            this._plugin.SpawnWindows();
+            this._handle = this._plugin.RequestWindowHandles()[0];
+
             this._isOnBackground = false;
             this._isHiddenBorder = false;
 
@@ -73,6 +91,10 @@ namespace BGEngine
             if(this._mediaplayer != null)
             {
                 this._mediaplayer.Stop();
+            }
+            if(this._plugin != null)
+            {
+                this._plugin.KillWindow();
             }
 
             IntPtr dc = Win32.GetDCEx(_workerw, IntPtr.Zero, (Win32.DeviceContextValues)0x403);

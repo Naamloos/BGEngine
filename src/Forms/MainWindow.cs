@@ -72,9 +72,24 @@ namespace BGEngine.Forms
                 {
                     // config screen is disabled, starting service is allowed.
                     //_runner.Start(Entry.Config.VlcPath, $"\"{Entry.Config.VideoPath}\" {Entry.Config.VlcArgs}");
-                    
 
-                    _runner.Start(Program.Config.VideoPath);
+                    switch (Program.Config.BackgroundMode)
+                    {
+                        case BackgroundMode.Plugin:
+                            var plugin = Program.Plugins.GetPlugin("bgengine-sampleplugin");
+                            if (plugin != null)
+                            {
+                                _runner.Start(plugin);
+                                break;
+                            }
+                            MessageBox.Show("No valid plugin selected! Change your config.");
+                            return;
+
+                        default:
+                        case BackgroundMode.Video:
+                            _runner.Start(Program.Config.VideoPath);
+                            break;
+                    }
 
                     statustext.ForeColor = Color.Green;
                     statustext.Text = "Status: Running";
@@ -82,7 +97,7 @@ namespace BGEngine.Forms
                 startbtn.Text = "Stop";
             }
         }
-        
+
         /// <summary>
         /// Validates settings.
         /// </summary>
@@ -107,7 +122,7 @@ namespace BGEngine.Forms
 
         private void trayicon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if(!this.Visible)
+            if (!this.Visible)
             {
                 this.Show();
                 this.WindowState = FormWindowState.Normal;
@@ -120,14 +135,14 @@ namespace BGEngine.Forms
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(_runner.Running)
+            if (_runner.Running)
                 _runner.Stop();
             Application.Exit();
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
         {
-            if(WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
                 this.Hide();
             }

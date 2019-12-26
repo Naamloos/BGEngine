@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BGEngine.Sdk;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,6 +28,17 @@ namespace BGEngine.Entities
             // give the process some time to start
             _running = true;
             _window = new BgWindow(file);
+
+            _window.RemoveBorders();
+            _window.MoveToBack();
+        }
+
+        public void Start(IPlugin plugin)
+        {
+            _killwhendone = true;
+            // give the process some time to start
+            _running = true;
+            _window = new BgWindow(plugin);
 
             _window.RemoveBorders();
             _window.MoveToBack();
