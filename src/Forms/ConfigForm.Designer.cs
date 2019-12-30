@@ -29,174 +29,52 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
-            this.tabs = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.autostart = new System.Windows.Forms.CheckBox();
-            this.bgmodes = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.selectvideobtn = new System.Windows.Forms.Button();
-            this.videopath = new System.Windows.Forms.TextBox();
-            this.vptext = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pluginlistbox = new System.Windows.Forms.ListBox();
+            this.applybtn = new System.Windows.Forms.Button();
+            this.cancelbtn = new System.Windows.Forms.Button();
+            this.videoopendialog = new System.Windows.Forms.OpenFileDialog();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.autostartdisablebtn = new System.Windows.Forms.Button();
             this.autostartenablebtn = new System.Windows.Forms.Button();
             this.RegistryLabel = new System.Windows.Forms.Label();
-            this.applybtn = new System.Windows.Forms.Button();
-            this.cancelbtn = new System.Windows.Forms.Button();
-            this.videoopendialog = new System.Windows.Forms.OpenFileDialog();
-            this.pluginconfigbtn = new System.Windows.Forms.Button();
-            this.tabs.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.WallpaperList = new System.Windows.Forms.ListView();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.autostart = new System.Windows.Forms.CheckBox();
+            this.tabs = new System.Windows.Forms.TabControl();
             this.tabPage4.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabs.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabs
+            // applybtn
             // 
-            this.tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabs.Controls.Add(this.tabPage1);
-            this.tabs.Controls.Add(this.tabPage2);
-            this.tabs.Controls.Add(this.tabPage3);
-            this.tabs.Controls.Add(this.tabPage4);
-            this.tabs.Location = new System.Drawing.Point(12, 12);
-            this.tabs.Name = "tabs";
-            this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(776, 411);
-            this.tabs.TabIndex = 0;
-            this.tabs.TabIndexChanged += new System.EventHandler(this.tabs_TabIndexChanged);
+            this.applybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.applybtn.Location = new System.Drawing.Point(12, 429);
+            this.applybtn.Name = "applybtn";
+            this.applybtn.Size = new System.Drawing.Size(94, 23);
+            this.applybtn.TabIndex = 1;
+            this.applybtn.Text = "Apply Changes";
+            this.applybtn.UseVisualStyleBackColor = true;
+            this.applybtn.Click += new System.EventHandler(this.applybtn_Click);
             // 
-            // tabPage1
+            // cancelbtn
             // 
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.autostart);
-            this.tabPage1.Controls.Add(this.bgmodes);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 385);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "General Settings";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.cancelbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cancelbtn.Location = new System.Drawing.Point(112, 429);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelbtn.TabIndex = 2;
+            this.cancelbtn.Text = "Cancel";
+            this.cancelbtn.UseVisualStyleBackColor = true;
+            this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
             // 
-            // label3
+            // videoopendialog
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(300, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "This will autostart the wallpaper when the program has started.";
-            // 
-            // autostart
-            // 
-            this.autostart.AutoSize = true;
-            this.autostart.Location = new System.Drawing.Point(6, 46);
-            this.autostart.Name = "autostart";
-            this.autostart.Size = new System.Drawing.Size(107, 17);
-            this.autostart.TabIndex = 2;
-            this.autostart.Text = "Autostart Service";
-            this.autostart.UseVisualStyleBackColor = true;
-            // 
-            // bgmodes
-            // 
-            this.bgmodes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.bgmodes.FormattingEnabled = true;
-            this.bgmodes.Location = new System.Drawing.Point(6, 19);
-            this.bgmodes.Name = "bgmodes";
-            this.bgmodes.Size = new System.Drawing.Size(756, 21);
-            this.bgmodes.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Background mode (as of right now this does nothing)";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.selectvideobtn);
-            this.tabPage2.Controls.Add(this.videopath);
-            this.tabPage2.Controls.Add(this.vptext);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 385);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Video-background Settings";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // selectvideobtn
-            // 
-            this.selectvideobtn.Location = new System.Drawing.Point(678, 19);
-            this.selectvideobtn.Name = "selectvideobtn";
-            this.selectvideobtn.Size = new System.Drawing.Size(84, 20);
-            this.selectvideobtn.TabIndex = 7;
-            this.selectvideobtn.Text = "Select...";
-            this.selectvideobtn.UseVisualStyleBackColor = true;
-            this.selectvideobtn.Click += new System.EventHandler(this.selectvideobtn_Click);
-            // 
-            // videopath
-            // 
-            this.videopath.Enabled = false;
-            this.videopath.Location = new System.Drawing.Point(6, 19);
-            this.videopath.Name = "videopath";
-            this.videopath.Size = new System.Drawing.Size(666, 20);
-            this.videopath.TabIndex = 6;
-            // 
-            // vptext
-            // 
-            this.vptext.AutoSize = true;
-            this.vptext.Location = new System.Drawing.Point(6, 3);
-            this.vptext.Name = "vptext";
-            this.vptext.Size = new System.Drawing.Size(59, 13);
-            this.vptext.TabIndex = 5;
-            this.vptext.Text = "Video Path";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.pluginconfigbtn);
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.pluginlistbox);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(768, 385);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Plugin-background Settings";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 317);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(182, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Someday, we will see metadata here.";
-            // 
-            // pluginlistbox
-            // 
-            this.pluginlistbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pluginlistbox.FormattingEnabled = true;
-            this.pluginlistbox.Location = new System.Drawing.Point(7, 7);
-            this.pluginlistbox.Name = "pluginlistbox";
-            this.pluginlistbox.Size = new System.Drawing.Size(755, 303);
-            this.pluginlistbox.TabIndex = 0;
-            this.pluginlistbox.SelectedIndexChanged += new System.EventHandler(this.pluginlistbox_SelectedIndexChanged);
+            this.videoopendialog.FileName = "video.mp4";
+            this.videoopendialog.Filter = "*.mp4|Video files";
             // 
             // tabPage4
             // 
@@ -211,7 +89,6 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Registry Settings";
             this.tabPage4.UseVisualStyleBackColor = true;
-            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
             // label2
             // 
@@ -252,43 +129,72 @@
             this.RegistryLabel.TabIndex = 0;
             this.RegistryLabel.Text = "Registry state:";
             // 
-            // applybtn
+            // tabPage3
             // 
-            this.applybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.applybtn.Location = new System.Drawing.Point(12, 429);
-            this.applybtn.Name = "applybtn";
-            this.applybtn.Size = new System.Drawing.Size(94, 23);
-            this.applybtn.TabIndex = 1;
-            this.applybtn.Text = "Apply Changes";
-            this.applybtn.UseVisualStyleBackColor = true;
-            this.applybtn.Click += new System.EventHandler(this.applybtn_Click);
+            this.tabPage3.Controls.Add(this.WallpaperList);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(768, 385);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Wallpaper Settings";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // cancelbtn
+            // WallpaperList
             // 
-            this.cancelbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancelbtn.Location = new System.Drawing.Point(112, 429);
-            this.cancelbtn.Name = "cancelbtn";
-            this.cancelbtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelbtn.TabIndex = 2;
-            this.cancelbtn.Text = "Cancel";
-            this.cancelbtn.UseVisualStyleBackColor = true;
-            this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
+            this.WallpaperList.HideSelection = false;
+            this.WallpaperList.Location = new System.Drawing.Point(7, 7);
+            this.WallpaperList.MultiSelect = false;
+            this.WallpaperList.Name = "WallpaperList";
+            this.WallpaperList.Size = new System.Drawing.Size(755, 372);
+            this.WallpaperList.TabIndex = 0;
+            this.WallpaperList.TileSize = new System.Drawing.Size(50, 50);
+            this.WallpaperList.UseCompatibleStateImageBehavior = false;
             // 
-            // videoopendialog
+            // tabPage1
             // 
-            this.videoopendialog.FileName = "video.mp4";
-            this.videoopendialog.Filter = "*.mp4|Video files";
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.autostart);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(768, 385);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "General Settings";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // pluginconfigbtn
+            // label3
             // 
-            this.pluginconfigbtn.Enabled = false;
-            this.pluginconfigbtn.Location = new System.Drawing.Point(643, 316);
-            this.pluginconfigbtn.Name = "pluginconfigbtn";
-            this.pluginconfigbtn.Size = new System.Drawing.Size(119, 23);
-            this.pluginconfigbtn.TabIndex = 2;
-            this.pluginconfigbtn.Text = "Open Plugin Config";
-            this.pluginconfigbtn.UseVisualStyleBackColor = true;
-            this.pluginconfigbtn.Click += new System.EventHandler(this.pluginconfigbtn_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(300, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "This will autostart the wallpaper when the program has started.";
+            // 
+            // autostart
+            // 
+            this.autostart.AutoSize = true;
+            this.autostart.Location = new System.Drawing.Point(9, 6);
+            this.autostart.Name = "autostart";
+            this.autostart.Size = new System.Drawing.Size(107, 17);
+            this.autostart.TabIndex = 2;
+            this.autostart.Text = "Autostart Service";
+            this.autostart.UseVisualStyleBackColor = true;
+            // 
+            // tabs
+            // 
+            this.tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabs.Controls.Add(this.tabPage1);
+            this.tabs.Controls.Add(this.tabPage3);
+            this.tabs.Controls.Add(this.tabPage4);
+            this.tabs.Location = new System.Drawing.Point(12, 12);
+            this.tabs.Name = "tabs";
+            this.tabs.SelectedIndex = 0;
+            this.tabs.Size = new System.Drawing.Size(776, 411);
+            this.tabs.TabIndex = 0;
             // 
             // ConfigForm
             // 
@@ -299,46 +205,36 @@
             this.Controls.Add(this.applybtn);
             this.Controls.Add(this.tabs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(816, 496);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(816, 496);
             this.Name = "ConfigForm";
             this.Text = "Config";
-            this.tabs.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabs.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabs;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button applybtn;
         private System.Windows.Forms.Button cancelbtn;
-        private System.Windows.Forms.ComboBox bgmodes;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog videoopendialog;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button autostartdisablebtn;
         private System.Windows.Forms.Button autostartenablebtn;
         private System.Windows.Forms.Label RegistryLabel;
-        private System.Windows.Forms.CheckBox autostart;
-        private System.Windows.Forms.TextBox videopath;
-        private System.Windows.Forms.Label vptext;
-        private System.Windows.Forms.Button selectvideobtn;
-        private System.Windows.Forms.OpenFileDialog videoopendialog;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ListView WallpaperList;
+        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox pluginlistbox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button pluginconfigbtn;
+        private System.Windows.Forms.CheckBox autostart;
+        private System.Windows.Forms.TabControl tabs;
     }
 }

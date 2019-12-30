@@ -18,13 +18,13 @@ namespace BGEngine.Forms
     public partial class MainWindow : Form
     {
         private ConfigForm _config;
-        private BgRunner _runner;
+        private BackgroundManager _manager;
 
         public MainWindow()
         {
             InitializeComponent();
             _config = new ConfigForm();
-            _runner = new BgRunner();
+            _manager = new BackgroundManager();
             this.Hide();
             trayicon.Visible = true;
             trayicon.ShowBalloonTip(2000);
@@ -41,7 +41,7 @@ namespace BGEngine.Forms
         private void configbtn_Click(object sender, EventArgs e)
         {
             // This button will configure the BGEngine service.
-            if (!_runner.Running)
+            if (!_manager.Running)
             {
                 _config.ShowDialog();
             }
@@ -59,9 +59,9 @@ namespace BGEngine.Forms
                 return;
             }
 
-            if (this._runner.Running)
+            if (this._manager.Running)
             {
-                _runner.Stop();
+                _manager.Stop();
                 statustext.ForeColor = Color.Red;
                 statustext.Text = "Status: Stopped";
                 startbtn.Text = "Start";
@@ -71,25 +71,9 @@ namespace BGEngine.Forms
                 if (!_config.Visible)
                 {
                     // config screen is disabled, starting service is allowed.
-                    //_runner.Start(Entry.Config.VlcPath, $"\"{Entry.Config.VideoPath}\" {Entry.Config.VlcArgs}");
-
-                    switch (Program.Config.BackgroundMode)
-                    {
-                        case BackgroundMode.Plugin:
-                            var plugin = Program.Plugins.GetPlugin("bgengine-sampleplugin");
-                            if (plugin != null)
-                            {
-                                _runner.Start(plugin);
-                                break;
-                            }
-                            MessageBox.Show("No valid plugin selected! Change your config.");
-                            return;
-
-                        default:
-                        case BackgroundMode.Video:
-                            _runner.Start(Program.Config.VideoPath);
-                            break;
-                    }
+                    // TODO pick wallpaper from config
+                    var wallpaper = Program.Wallpapers.First(x => x.ToString() == Program.Config.SelectedWallpaper);
+                    _manager.Start(wallpaper);
 
                     statustext.ForeColor = Color.Green;
                     statustext.Text = "Status: Running";
@@ -104,18 +88,6 @@ namespace BGEngine.Forms
         /// <returns>Returns true if settings are valid, else false.</returns>
         private bool ValidateSettings()
         {
-            if (!File.Exists(Program.Config.VideoPath))
-            {
-                return false;
-            }
-
-            var ext = Path.GetExtension(Program.Config.VideoPath);
-            var allowedexts = new string[] { ".mp4", ".wmv", ".mov", ".mkv", ".avi", ".flv" };
-
-            if (!allowedexts.Contains(ext))
-            {
-                return false;
-            }
 
             return true;
         }
@@ -135,8 +107,8 @@ namespace BGEngine.Forms
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (_runner.Running)
-                _runner.Stop();
+            if (_manager.Running)
+                _manager.Stop();
             Application.Exit();
         }
 

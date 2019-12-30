@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -20,8 +21,6 @@ namespace BGEngine.Forms
         public ConfigForm()
         {
             InitializeComponent();
-            bgmodes.Items.Add(Entities.BackgroundMode.Video);
-            bgmodes.Items.Add(Entities.BackgroundMode.Plugin);
 
             var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
             RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
@@ -29,36 +28,30 @@ namespace BGEngine.Forms
             RegistryLabel.Text = $"Autostart enabled: {key.GetValueNames().Contains("BGEngine")}";
 
             // preset values in config
-            bgmodes.SelectedItem = Program.Config.BackgroundMode;
             autostart.Checked = Program.Config.AutoStartService;
-            videopath.Text = Program.Config.VideoPath;
 
-            foreach(var p in Program.Plugins.GetAllPlugins())
+            WallpaperList.LargeImageList = new ImageList();
+            WallpaperList.LargeImageList.ImageSize = new Size(100, 100);
+            WallpaperList.LargeImageList.ColorDepth = ColorDepth.Depth32Bit;
+            foreach(var w in Program.Wallpapers)
             {
-                this.pluginlistbox.Items.Add(new ListPlugin(p));
+                var impath = Path.Combine(w.Path, w.ThumbnailPath);
+                WallpaperList.LargeImageList.Images.Add(w.ToString(), Image.FromFile(impath));
+                WallpaperList.Items.Add(w.ToString(), w.ToString());
             }
-
-            if (Program.Plugins.GetAllPlugins().Any(x => x.RequestPluginInfo().PluginId == Program.Config.SelectedPluginId))
-            {
-                this.pluginlistbox.SelectedItem 
-                    = new ListPlugin(Program.Plugins.GetAllPlugins().First(x => x.RequestPluginInfo().PluginId == Program.Config.SelectedPluginId));
-            }
-            else
-            {
-                this.pluginlistbox.SelectedItem = null;
-            }
-
-            ShowConfigButtonIfNeeded();
         }
 
         private void applybtn_Click(object sender, EventArgs e)
         {
             // apply
-            Program.Config.BackgroundMode = (BackgroundMode)bgmodes.SelectedItem;
             Program.Config.AutoStartService = autostart.Checked;
-            Program.Config.VideoPath = videopath.Text;
-            if (pluginlistbox.SelectedItem != null)
-                Program.Config.SelectedPluginId = ((ListPlugin)pluginlistbox.SelectedItem).Plugin.RequestPluginInfo().PluginId;
+
+            if(WallpaperList.SelectedItems.Count > 0)
+            {
+                var selected = WallpaperList.SelectedItems[0];
+
+                Program.Config.SelectedWallpaper = selected.Text;
+            }
 
             File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), JsonConvert.SerializeObject(Program.Config));
             this.Close();
@@ -67,15 +60,6 @@ namespace BGEngine.Forms
         private void cancelbtn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabs_TabIndexChanged(object sender, EventArgs e)
-        {
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -92,54 +76,6 @@ namespace BGEngine.Forms
             RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
             key.DeleteValue("BGEngine", false);
             RegistryLabel.Text = $"Autostart enabled: {key.GetValueNames().Contains("BGEngine")}";
-        }
-
-        private void selectvideobtn_Click(object sender, EventArgs e)
-        {
-            videoopendialog.ShowHelp = true;
-            videoopendialog.FileName = "vlc.exe";
-            videoopendialog.Filter = "Video Files|*.mp4;*.wmv;*.mov;*.mkv;*.avi;*.flv;";
-            var res = videoopendialog.ShowDialog();
-
-            if (res == DialogResult.OK)
-            {
-                this.videopath.Text = videoopendialog.FileName;
-            }
-        }
-
-        private void pluginlistbox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ShowConfigButtonIfNeeded();
-        }
-
-        private void ShowConfigButtonIfNeeded()
-        {
-            var selected = (ListPlugin)pluginlistbox.SelectedItem;
-
-            if (selected == null)
-                return;
-
-            if (selected.Plugin.RequestPluginInfo().HasConfig)
-            {
-                pluginconfigbtn.Enabled = true;
-            }
-            else
-            {
-                pluginconfigbtn.Enabled = false;
-            }
-        }
-
-        private void pluginconfigbtn_Click(object sender, EventArgs e)
-        {
-            var selected = (ListPlugin)pluginlistbox.SelectedItem;
-
-            if (selected == null)
-                return;
-
-            if (selected.Plugin.RequestPluginInfo().HasConfig)
-            {
-                selected.Plugin.ShowPluginConfig();
-            }
         }
     }
 }
