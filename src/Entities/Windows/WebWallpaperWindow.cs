@@ -13,6 +13,7 @@ namespace BGEngine.Entities.Windows
         SimpleHTTPServer _server;
         int _port;
         string _uri;
+        WallpaperType _type;
         public WebWallpaperWindow(string uri, WallpaperType Type, int Width, int Height, int X, int Y) : base(Width, Height, X, Y)
         {
             var url = "";
@@ -26,6 +27,7 @@ namespace BGEngine.Entities.Windows
                 // create webserver
                 _uri = uri;
                 url = $"http://localhost:{_port}/";
+                _type = Type;
             }
             _browser = new BrowserForm(url);
         }
@@ -43,7 +45,10 @@ namespace BGEngine.Entities.Windows
 
         public override void Start()
         {
-            _server = new SimpleHTTPServer(_uri, _port);
+            if (_type == WallpaperType.Web)
+            {
+                _server = new SimpleHTTPServer(_uri, _port);
+            }
             _browser.Show();
         }
     }
