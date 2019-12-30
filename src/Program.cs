@@ -66,7 +66,7 @@ namespace BGEngine
             Application.Run(new MainWindow());
         }
 
-        const string EXPECTED_GH_VERSION_TAG = "0.2BETA";
+        const string EXPECTED_GH_VERSION_TAG = "0.3BETA";
         static void CheckForUpdates()
         {
             try

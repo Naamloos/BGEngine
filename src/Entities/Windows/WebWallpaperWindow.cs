@@ -39,7 +39,10 @@ namespace BGEngine.Entities.Windows
 
         public override void Kill()
         {
-            _server.Stop();
+            if (_type == WallpaperType.Web)
+            {
+                _server.Stop();
+            }
             _browser.Dispose();
         }
 
