@@ -1,16 +1,15 @@
 # BGEngine
-A small app allowing you to set live wallpaper content. 
-
-## Demo video
-A demo video is available [here](https://www.youtube.com/watch?v=A9p7EMPA8do).
+A small app allowing you to set live wallpaper content similar to wallpaper engine. 
 
 ## Screenshots
 These screenshots are taken in version 0.1BETA and are subject to changes.
 ### Main Window
-![Main Window](https://i.imgur.com/Mt10pDF.png)
-### Settings Screen
-![Settings Screen](https://i.imgur.com/9qFqWZq.png)
-### Video-Background Settings
-![Video-Background Settings](https://i.imgur.com/2zN42dA.png)
+![Main Window](https://i.imgur.com/1LjYzVU.png)
+### General Settings
+![Settings Screen](https://i.imgur.com/Lhjo3is.png)
+### Wallpapers
+![Video-Background Settings](https://i.imgur.com/smuB8Tw.png)
 ### Registry Settings
-![Registry Settings](https://i.imgur.com/RWG9rad.png)
+![Registry Settings](https://i.imgur.com/ZEryImy.png)
+### Demo Gif
+![Demo Gif](https://i.imgur.com/gdKaG1M.gif)
