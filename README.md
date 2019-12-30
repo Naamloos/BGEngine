@@ -12,4 +12,4 @@ These screenshots are taken in version 0.4BETA and are subject to changes.
 ### Registry Settings
 ![Registry Settings](https://i.imgur.com/ZEryImy.png)
 ### Demo Gif
-![Demo Gif](https://i.imgur.com/gdKaG1M.gif)
+![Demo Gif](https://i.imgur.com/kV0lz4a.gif)
