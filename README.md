@@ -2,7 +2,7 @@
 A small app allowing you to set live wallpaper content similar to wallpaper engine. 
 
 ## Screenshots
-These screenshots are taken in version 0.1BETA and are subject to changes.
+These screenshots are taken in version 0.4BETA and are subject to changes.
 ### Main Window
 ![Main Window](https://i.imgur.com/1LjYzVU.png)
 ### General Settings
