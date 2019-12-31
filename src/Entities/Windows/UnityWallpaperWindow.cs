@@ -23,30 +23,30 @@ namespace BGEngine.Entities.Windows
 
         public override IntPtr GetHandle()
         {
-            return _unityHwnd;
+            return this._unityHwnd;
         }
 
         public override void Start()
         {
             var wait = new SpinWait();
-            var psi = new ProcessStartInfo(_exePath, $"-parentHWND {_workerw.ToInt32()} -screen-width {Width} -screen-height {Height}");
+            var psi = new ProcessStartInfo(this._exePath, $"-parentHWND {this._workerw.ToInt32()} -screen-width {this.Width} -screen-height {this.Height}");
 
-            _process = Process.Start(psi);
-            _process.WaitForInputIdle();
-            _process.Refresh();
+            this._process = Process.Start(psi);
+            this._process.WaitForInputIdle();
+            this._process.Refresh();
 
-            Win32.EnumChildWindows(_workerw, EnumWindowProc, IntPtr.Zero);
+            Win32.EnumChildWindows(this._workerw, this.EnumWindowProc, IntPtr.Zero);
 
             // according to unity docs, wait until the least significant bit of GWL_USERDATA = 1
-            while ((Win32.GetWindowLong(_unityHwnd, Win32.GWL_USERDATA) & 0x7FFFFFFFF) != 1)
+            while ((Win32.GetWindowLong(this._unityHwnd, Win32.GWL_USERDATA) & 0x7FFFFFFFF) != 1)
             {
                 wait.SpinOnce();
             }
 
-            Win32.MoveWindow(_unityHwnd, X, Y, Width, Height, true);
+            Win32.MoveWindow(this._unityHwnd, this.X, this.Y, this.Width, this.Height, true);
 
-            _isHiddenBorder = true;
-            _isOnBackground = true;
+            this._isHiddenBorder = true;
+            this._isOnBackground = true;
         }
 
         // hacky way to get the window handle because for some reason
@@ -57,7 +57,7 @@ namespace BGEngine.Entities.Windows
 
             if (procId == _process.Id)
             {
-                _unityHwnd = hWnd;
+                this._unityHwnd = hWnd;
             }
 
             return true;
@@ -67,7 +67,7 @@ namespace BGEngine.Entities.Windows
         {
             try
             {
-                _process?.Kill();
+                this._process?.Kill();
             }
             catch
             {
