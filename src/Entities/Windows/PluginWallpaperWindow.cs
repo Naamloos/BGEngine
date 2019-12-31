@@ -13,7 +13,6 @@ namespace BGEngine.Entities.Windows
     class PluginWallpaperWindow : WallpaperWindow
     {
         IPlugin _plugin;
-        Media _media;
         IntPtr _hwnd;
         public PluginWallpaperWindow(string dllpath, int width, int height, int x, int y) : base(width, height, x, y)
         {

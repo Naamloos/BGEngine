@@ -115,6 +115,7 @@
     <Compile Include="Entities\Config.cs" />
     <Compile Include="Entities\SimpleHTTPServer.cs" />
     <Compile Include="Entities\Windows\PluginWallpaperWindow.cs" />
+    <Compile Include="Entities\Windows\UnityWallpaperWindow.cs" />
     <Compile Include="Entities\Windows\VideoWallpaperWindow.cs" />
     <Compile Include="Entities\Windows\WallpaperWindow.cs" />
     <Compile Include="Entities\Wallpaper.cs" />

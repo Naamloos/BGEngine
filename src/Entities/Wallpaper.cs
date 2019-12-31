@@ -60,6 +60,7 @@ namespace BGEngine.Entities
         Video,
         Plugin,
         Web,
-        Website
+        Website,
+        Unity
     }
 }

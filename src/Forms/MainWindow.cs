@@ -22,14 +22,14 @@ namespace BGEngine.Forms
 
         public MainWindow()
         {
+            Application.EnableVisualStyles();
+
             InitializeComponent();
             _config = new ConfigForm();
             _manager = new BackgroundManager();
             this.Hide();
             trayicon.Visible = true;
             trayicon.ShowBalloonTip(2000);
-
-            Application.EnableVisualStyles();
 
             if (Program.Config.AutoStartService)
             {
