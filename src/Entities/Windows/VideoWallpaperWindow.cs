@@ -12,7 +12,7 @@ namespace BGEngine.Entities.Windows
     {
         MediaPlayer _mediaplayer;
         Media _media;
-        IntPtr _hwnd;
+
         public VideoWallpaperWindow(string mediapath, int width, int height, int x, int y) : base(width, height, x, y)
         {
             this._mediaplayer = new MediaPlayer(Program.LibVLC);
@@ -23,7 +23,7 @@ namespace BGEngine.Entities.Windows
 
         public override IntPtr GetHandle()
         {
-            return this._hwnd;
+            return this._mediaplayer.Hwnd;
         }
 
         public override void Kill()

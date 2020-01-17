@@ -11,14 +11,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BGEngine.Entities
+namespace BGEngine.Entities.Managers
 {
-    public class BackgroundManager
+    public class WindowManager
     {
         private List<WallpaperWindow> _windows = null;
         public bool Running { get; private set; } = false;
 
-        public BackgroundManager()
+        public WindowManager()
         {
             _windows = new List<WallpaperWindow>();
         }

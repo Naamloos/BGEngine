@@ -47,7 +47,7 @@ namespace BGEngine.Entities
         public string Path { get; set; }
 
         [JsonProperty("path")]
-        private string _wallpaperpath;
+        private string _wallpaperpath = "";
 
         public override string ToString()
         {

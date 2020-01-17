@@ -16,55 +16,15 @@ namespace BGEngine
     class Program
     {
         internal static LibVLC LibVLC;
-        internal static Config Config;
-        internal static List<Wallpaper> Wallpapers;
 
         [STAThread]
         static void Main(string[] args)
         {
-            if (File.Exists(Path.Combine(Application.StartupPath, "config.json")))
-            {
-                Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(Application.StartupPath, "config.json")));
-            }
-            else
-            {
-                Config = new Config();
-                File.Create(Path.Combine(Application.StartupPath, "config.json")).Close();
-            }
-            File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), JsonConvert.SerializeObject(Config));
+            // Initialize VLC
             Core.Initialize();
-            // repeat on -1 or 0 doesn't seem to work, so we'll just use the biggest 16-bit int possible, ooooooof
-            var b = Screen.PrimaryScreen.Bounds;
             LibVLC = new LibVLC("--input-repeat=65535", "--autoscale", "--repeat", "--no-embedded-video");
 
-            Wallpapers = new List<Wallpaper>();
-
-            if (!Directory.Exists("wallpapers"))
-            {
-                Directory.CreateDirectory(Path.Combine(Application.StartupPath, "wallpapers"));
-            }
-
-            foreach(var dir in Directory.GetDirectories(Path.Combine(Application.StartupPath, "wallpapers")))
-            {
-                var metapath = Path.Combine(dir, "meta.json");
-                if (File.Exists(metapath))
-                {
-                    var wp = File.ReadAllText(metapath);
-                    var wpaper = JsonConvert.DeserializeObject<Wallpaper>(wp);
-                    wpaper.Path = dir;
-                    Wallpapers.Add(wpaper);
-                }
-                else
-                {
-                    File.Create(metapath).Close();
-                    File.WriteAllText(metapath, JsonConvert.SerializeObject(new Wallpaper()));
-                }
-            }
-
             CheckForUpdates();
-
-            Application.EnableVisualStyles();
-            Application.Run(new MainWindow());
         }
 
         const string EXPECTED_GH_VERSION_TAG = "0.4BETA";

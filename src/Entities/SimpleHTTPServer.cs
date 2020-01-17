@@ -147,7 +147,7 @@ namespace BGEngine.Entities
                     HttpListenerContext context = _listener.GetContext();
                     Process(context);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -196,7 +196,7 @@ namespace BGEngine.Entities
                     context.Response.StatusCode = (int)HttpStatusCode.OK;
                     context.Response.OutputStream.Flush();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 }
