@@ -26,6 +26,11 @@ namespace BGEngine.Entities.Managers
         public void Start(Wallpaper w)
         {
             // give the process some time to start
+            if(w == null)
+            {
+                return;
+            }
+
             Running = true;
 
             foreach (var s in Screen.AllScreens)

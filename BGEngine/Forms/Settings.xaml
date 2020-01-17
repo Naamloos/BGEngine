@@ -1,0 +1,51 @@
+﻿<Window x:Class="BGEngine.Forms.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="clr-namespace:XamlAnimatedGif;assembly=XamlAnimatedGif"
+        xmlns:local="clr-namespace:BGEngine.Forms"
+        mc:Ignorable="d"
+        Title="Settings" Height="525" Width="825.82" Topmost="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="113*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Margin="10,10,280,10" Grid.ColumnSpan="2" Name="wallpaperlist">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" >
+                        <Image gif:AnimationBehavior.SourceUri="{Binding ImageData}" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="UniformToFill" MaxWidth="150px" />
+                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ScrollViewer Grid.Column="1" Margin="0,223,10,10" HorizontalAlignment="Right" Width="263">
+            <StackPanel>
+                <CheckBox Name="UseLwp" Content="Use Live Wallpaper" />
+                <CheckBox Name="Autostart" Content="Automatically start BGEngine" />
+                <Button Content="Exit BGEngine" Click="Button_Click_1"/>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1" Margin="0,10,10,0" HorizontalAlignment="Right" Width="263" Height="208" VerticalAlignment="Top">
+            <StackPanel>
+                <Label Content="Selected Item:" FontWeight="Bold"/>
+                <Label Content="" Name="wallpapername"/>
+                <Label Content="Description:" FontWeight="Bold"/>
+                <Label Content="" Name="wallpaperdesc"/>
+                <Label Content="Project Url:" FontWeight="Bold"/>
+                <Label Content="" Name="projecturl"/>
+                <Label Content="Author Url" FontWeight="Bold"/>
+                <Label Content="" Name="authorurl"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

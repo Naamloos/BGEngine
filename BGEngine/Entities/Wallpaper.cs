@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -18,8 +19,10 @@ namespace BGEngine.Entities
         [JsonProperty("author")]
         public string Author;
 
+        [JsonIgnore]
+        public string ThumbnailPath => quilifiedPath(_thumbnailPath);
         [JsonProperty("thumbnailpath")]
-        public string ThumbnailPath;
+        private string _thumbnailPath;
 
         [JsonProperty("projecturl")]
         public string ProjectUrl;
@@ -48,6 +51,11 @@ namespace BGEngine.Entities
 
         [JsonProperty("path")]
         private string _wallpaperpath = "";
+
+        private string quilifiedPath(string input)
+        {
+            return System.IO.Path.Combine(this.Path, input);
+        }
 
         public override string ToString()
         {

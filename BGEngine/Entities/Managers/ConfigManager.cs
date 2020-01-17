@@ -50,15 +50,15 @@ namespace BGEngine.Entities.Managers
             return this._config.SelectedWallpaper;
         }
 
-        public void SetAutostart(bool enabled)
+        public void SetUseWallpaper(bool enabled)
         {
-            this._config.AutoStartService = enabled;
+            this._config.UseWallpaper = enabled;
             this.save();
         }
 
-        public bool GetAutostart()
+        public bool GetUseWallpaper()
         {
-            return this._config.AutoStartService;
+            return this._config.UseWallpaper;
         }
 
         public void SetLaunchAtBoot(bool enabled)
