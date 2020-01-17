@@ -47,6 +47,10 @@ namespace BGEngine.Entities
                     case WallpaperType.Website:
                         win = new WebWallpaperWindow(w.WallpaperPath, w.Type, bounds.Width, bounds.Height, bounds.X, bounds.Y);
                         break;
+
+                    case WallpaperType.Unity:
+                        win = new UnityWallpaperWindow(w.WallpaperPath, bounds.Width, bounds.Height, bounds.X, bounds.Y);
+                        break;
                 }
 
                 win.Start();

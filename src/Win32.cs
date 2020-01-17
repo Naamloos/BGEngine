@@ -40,6 +40,10 @@ namespace BGEngine
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
 
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumChildWindows(IntPtr hwnd, EnumWindowsProc lpEnumFunc, IntPtr lParam);
+
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern IntPtr SendMessageTimeout(
             IntPtr hWnd,
@@ -112,16 +116,20 @@ namespace BGEngine
         public static IntPtr HWND_TOP = IntPtr.Zero;
         public const int SWP_SHOWWINDOW = 64; // 0x0040
 
-        [DllImport("USER32.DLL")]
+        [DllImport("user32.dll")]
+        public static extern bool MoveWindow(IntPtr handle, int x, int y, int width, int height, bool redraw);
+
+        [DllImport("user32.dll")]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
         [DllImport("user32.dll")]
         public static extern bool DrawMenuBar(IntPtr hWnd);
 
         //Gets window attributes
-        [DllImport("USER32.DLL")]
+        [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
+        public const int GWL_USERDATA = -21;           //for unity
         public const int GWL_STYLE = -16;              //hex constant for style changing
         public const int WS_BORDER = 0x00800000;       //window with border
         public const int WS_CAPTION = 0x00C00000;      //window with a title bar
@@ -137,6 +145,9 @@ namespace BGEngine
         public const int SPI_SETDESKWALLPAPER = 20;
         public const int SPIF_UPDATEINIFILE = 0x01;
         public const int SPIF_SENDWININICHANGE = 0x02;
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
         [Flags]
         public enum SendMessageTimeoutFlags : uint
