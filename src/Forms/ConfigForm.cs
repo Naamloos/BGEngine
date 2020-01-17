@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -66,7 +67,7 @@ namespace BGEngine.Forms
         {
             var path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
             RegistryKey key = Registry.CurrentUser.OpenSubKey(path, true);
-            key.SetValue("BGEngine", Application.ExecutablePath.ToString());
+            key.SetValue("BGEngine", Assembly.GetEntryAssembly().Location);
             RegistryLabel.Text = $"Autostart enabled: {key.GetValueNames().Contains("BGEngine")}";
         }
 

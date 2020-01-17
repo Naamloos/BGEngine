@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -40,10 +41,10 @@ namespace BGEngine
 
             if (!Directory.Exists("wallpapers"))
             {
-                Directory.CreateDirectory("wallpapers");
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, "wallpapers"));
             }
 
-            foreach(var dir in Directory.GetDirectories("wallpapers"))
+            foreach(var dir in Directory.GetDirectories(Path.Combine(Application.StartupPath, "wallpapers")))
             {
                 var metapath = Path.Combine(dir, "meta.json");
                 if (File.Exists(metapath))
