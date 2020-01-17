@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGEngine", "BGEngine.csproj", "{C2561C16-5F63-43E0-955A-5F4D27594552}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGEngine", "BGEngine\BGEngine.csproj", "{C2561C16-5F63-43E0-955A-5F4D27594552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGEngine.Sdk", "..\BGEngine.Sdk\BGEngine.Sdk.csproj", "{A7C3A34D-A38B-46D2-AEB2-C5297DEF44CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGEngine.Sdk", "BGEngine.Sdk\BGEngine.Sdk.csproj", "{A7C3A34D-A38B-46D2-AEB2-C5297DEF44CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGEngine.SamplePlugin", "..\BGEngine.SamplePlugin\BGEngine.SamplePlugin.csproj", "{BD26B637-1698-4867-BF9A-96568782966C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGEngine.SamplePlugin", "BGEngine.SamplePlugin\BGEngine.SamplePlugin.csproj", "{BD26B637-1698-4867-BF9A-96568782966C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

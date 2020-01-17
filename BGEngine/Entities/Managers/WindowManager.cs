@@ -11,14 +11,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BGEngine.Entities
+namespace BGEngine.Entities.Managers
 {
-    public class BackgroundManager
+    public class WindowManager
     {
         private List<WallpaperWindow> _windows = null;
         public bool Running { get; private set; } = false;
 
-        public BackgroundManager()
+        public WindowManager()
         {
             _windows = new List<WallpaperWindow>();
         }
@@ -26,6 +26,11 @@ namespace BGEngine.Entities
         public void Start(Wallpaper w)
         {
             // give the process some time to start
+            if(w == null)
+            {
+                return;
+            }
+
             Running = true;
 
             foreach (var s in Screen.AllScreens)

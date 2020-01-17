@@ -9,8 +9,11 @@ namespace BGEngine.Entities
 {
     public class Config
     {
-        [JsonProperty("autostart-service", NullValueHandling = NullValueHandling.Ignore)]
-        public bool AutoStartService = false;
+        [JsonProperty("use-wallpaper", NullValueHandling = NullValueHandling.Ignore)]
+        public bool UseWallpaper { 
+            get; 
+            set; 
+        }
 
         [JsonProperty("selectedwallpaper", NullValueHandling = NullValueHandling.Ignore)]
         public string SelectedWallpaper = "";
