@@ -32,6 +32,8 @@
             <StackPanel>
                 <CheckBox Name="UseLwp" Content="Use Live Wallpaper" />
                 <CheckBox Name="Autostart" Content="Automatically start BGEngine" />
+                <Label Content="Taskbar mode:"/>
+                <ComboBox Name="Taskbarmode" SelectionChanged="newSelection"/>
                 <Button Content="Exit BGEngine" Click="Button_Click_1"/>
             </StackPanel>
         </ScrollViewer>

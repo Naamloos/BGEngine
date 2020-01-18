@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine.cs" />
+    <Compile Include="Entities\Managers\TaskbarManager.cs" />
     <Compile Include="Entities\Managers\WindowManager.cs" />
     <Compile Include="Entities\Config.cs" />
     <Compile Include="Entities\Managers\ConfigManager.cs" />

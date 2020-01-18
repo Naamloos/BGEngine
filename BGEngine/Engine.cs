@@ -20,6 +20,8 @@ namespace BGEngine
 
         public ConfigManager ConfigManager;
         public WallpaperManager WallpaperManager;
+        public TaskbarManager TaskbarManager;
+
         private WindowManager _windowManager;
         private bool _settingsvisible = false;
 
@@ -31,6 +33,7 @@ namespace BGEngine
             this.ConfigManager = new ConfigManager();
             this.WallpaperManager = new WallpaperManager();
             this._windowManager = new WindowManager();
+            this.TaskbarManager = new TaskbarManager();
 
             this._icon = new NotifyIcon();
             this._icon.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
@@ -58,12 +61,14 @@ namespace BGEngine
             }
         }
 
-        public void UpdateWallpaper()
+        public void UpdateState()
         {
             _windowManager.Stop();
 
             if (ConfigManager.GetUseWallpaper())
                 _windowManager.Start(WallpaperManager.GetCurrentWallpaper());
+
+            TaskbarManager.SetTaskbarStyle(ConfigManager.GetTaskbarMode());
         }
 
         public void Run()
@@ -73,7 +78,7 @@ namespace BGEngine
 
             // Initialize shit here
             WallpaperManager.SetCurrentWallpaper(ConfigManager.GetSelectedWallpaper());
-            UpdateWallpaper();
+            UpdateState();
 
             this._icon.Visible = true;
             this._icon.ShowBalloonTip(0, "BGEngine", "Started running!", ToolTipIcon.None);

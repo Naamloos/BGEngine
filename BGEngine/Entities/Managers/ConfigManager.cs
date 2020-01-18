@@ -39,6 +39,17 @@ namespace BGEngine.Entities.Managers
             return true;
         }
 
+        public TaskbarMode GetTaskbarMode()
+        {
+            return this._config.TaskbarMode;
+        }
+
+        public void SetTaskbarMode(TaskbarMode mode)
+        {
+            this._config.TaskbarMode = mode;
+            this.save();
+        }
+
         public void SetSelectedWallpaper(string wallpaper)
         {
             this._config.SelectedWallpaper = wallpaper;
