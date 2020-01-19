@@ -21,6 +21,12 @@ namespace BGEngine.Entities
 
         [JsonProperty("taskbarmode")]
         public TaskbarMode TaskbarMode = TaskbarMode.Acrylic;
+
+        [JsonProperty("hideshortcutarrows")]
+        public bool HideShortcutArrows = false;
+
+        [JsonProperty("centertaskbar")]
+        public bool CenterTaskbar = false;
     }
 
     public enum BackgroundMode

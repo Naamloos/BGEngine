@@ -33,7 +33,7 @@ namespace BGEngine
             this.ConfigManager = new ConfigManager();
             this.WallpaperManager = new WallpaperManager();
             this._windowManager = new WindowManager();
-            this.TaskbarManager = new TaskbarManager();
+            this.TaskbarManager = new TaskbarManager(ConfigManager);
 
             this._icon = new NotifyIcon();
             this._icon.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
@@ -68,7 +68,8 @@ namespace BGEngine
             if (ConfigManager.GetUseWallpaper())
                 _windowManager.Start(WallpaperManager.GetCurrentWallpaper());
 
-            TaskbarManager.SetTaskbarStyle(ConfigManager.GetTaskbarMode());
+            TaskbarManager.Stop();
+            TaskbarManager.Start();
         }
 
         public void Run()
@@ -89,6 +90,8 @@ namespace BGEngine
         public void Stop()
         {
             _windowManager.Stop();
+            TaskbarManager.Stop();
+            this._icon.Visible = false;
             System.Windows.Forms.Application.Exit();
         }
 

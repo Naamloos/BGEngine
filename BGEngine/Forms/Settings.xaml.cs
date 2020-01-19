@@ -30,11 +30,14 @@ namespace BGEngine.Forms
 
             Autostart.IsChecked = engine.ConfigManager.GetLaunchAtBoot();
             UseLwp.IsChecked = engine.ConfigManager.GetUseWallpaper();
+            Centertaskbar.IsChecked = engine.ConfigManager.GetCenterTaskbar();
 
             Autostart.Checked += checkboxChanged;
             Autostart.Unchecked += checkboxChanged;
             UseLwp.Checked += checkboxChanged;
             UseLwp.Unchecked += checkboxChanged;
+            Centertaskbar.Checked += checkboxChanged;
+            Centertaskbar.Unchecked += checkboxChanged;
 
             wallpaperlist.SelectionMode = SelectionMode.Single;
             List<ListWallpaper> wps = new List<ListWallpaper>();
@@ -52,6 +55,7 @@ namespace BGEngine.Forms
 
             wallpaperlist.SelectionChanged += newSelection;
 
+            Taskbarmode.Items.Add(TaskbarMode.None);
             Taskbarmode.Items.Add(TaskbarMode.Acrylic);
             Taskbarmode.Items.Add(TaskbarMode.Blur);
             Taskbarmode.Items.Add(TaskbarMode.Transparent);
@@ -86,6 +90,8 @@ namespace BGEngine.Forms
             engine.ConfigManager.SetTaskbarMode((TaskbarMode)Taskbarmode.SelectedItem);
             engine.ConfigManager.SetLaunchAtBoot(Autostart.IsChecked ?? engine.ConfigManager.GetLaunchAtBoot());
             engine.ConfigManager.SetUseWallpaper(UseLwp.IsChecked ?? engine.ConfigManager.GetUseWallpaper());
+            engine.ConfigManager.SetCenterTaskbar(Centertaskbar.IsChecked ?? engine.ConfigManager.GetCenterTaskbar());
+
             if (wallpaperlist.SelectedItem != null)
                 engine.ConfigManager.SetSelectedWallpaper(((ListWallpaper)wallpaperlist.SelectedItem).Title);
 
