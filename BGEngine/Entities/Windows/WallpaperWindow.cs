@@ -138,18 +138,10 @@ namespace BGEngine.Entities.Windows
                     // Setting this window's parent to workerw.
                     Win32.SetParent(handle, this._workerw);
 
-                    // Getting bounds of primary screen.
-                    var b = Screen.PrimaryScreen.Bounds;
-
-                    // TODO multiscreen
-                    //foreach (var screen in Screen.AllScreens)
-                    //{
-                    //    b = screen.Bounds;
-                    //    MessageBox.Show($"x{b.X}, y{b.Y}, w{b.Width}, h{b.Height}");
-                    //}
+                    //MessageBox.Show($"x{b.X}, y{b.Y}, w{b.Width}, h{b.Height}");
 
                     // Set a new position for this window to fill the screen.
-                    Win32.SetWindowPos(handle, Win32.HWND_TOP, b.X, b.Y, b.Width, b.Height, Win32.SWP_SHOWWINDOW);
+                    Win32.SetWindowPos(handle, Win32.HWND_TOP, this.X, this.Y, this.Width, this.Height, Win32.SWP_SHOWWINDOW);
 
                     // Woo! we're done. Set a new value for isOnBackground.
                     this._isOnBackground = true;

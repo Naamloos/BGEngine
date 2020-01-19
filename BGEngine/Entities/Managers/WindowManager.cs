@@ -68,22 +68,25 @@ namespace BGEngine.Entities.Managers
 
         public void Stop()
         {
-            var workerw = IntPtr.Zero;
-            foreach (var w in _windows)
+            if (Running)
             {
-                w.MoveToFront();
-                w.RevealBorders();
-                w.Kill();
-                workerw = w._workerw;
+                var workerw = IntPtr.Zero;
+                foreach (var w in _windows)
+                {
+                    w.MoveToFront();
+                    w.RevealBorders();
+                    w.Kill();
+                    workerw = w._workerw;
+                }
+
+                // Releasing the workerw, might want to bring this INTO the class..
+                IntPtr dc = Win32.GetDCEx(workerw, IntPtr.Zero, (Win32.DeviceContextValues)0x403);
+                Win32.ReleaseDC(workerw, dc);
+
+                this._windows.Clear();
+                RestoreWallpaper();
+                this.Running = false;
             }
-
-            // Releasing the workerw, might want to bring this INTO the class..
-            IntPtr dc = Win32.GetDCEx(workerw, IntPtr.Zero, (Win32.DeviceContextValues)0x403);
-            Win32.ReleaseDC(workerw, dc);
-
-            this._windows.Clear();
-            RestoreWallpaper();
-            this.Running = false;
         }
 
 

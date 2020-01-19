@@ -126,7 +126,6 @@
     <Compile Include="Entities\Config.cs" />
     <Compile Include="Entities\Managers\ConfigManager.cs" />
     <Compile Include="Entities\Managers\WallpaperManager.cs" />
-    <Compile Include="Entities\SimpleHTTPServer.cs" />
     <Compile Include="Entities\Windows\PluginWallpaperWindow.cs" />
     <Compile Include="Entities\Windows\UnityWallpaperWindow.cs" />
     <Compile Include="Entities\Windows\VideoWallpaperWindow.cs" />
@@ -138,6 +137,12 @@
     </Compile>
     <Compile Include="Forms\BrowserForm.Designer.cs">
       <DependentUpon>BrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmptyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmptyForm.Designer.cs">
+      <DependentUpon>EmptyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormEntities\ListWallpaper.cs" />
     <Compile Include="Forms\Settings.xaml.cs">

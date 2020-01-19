@@ -95,7 +95,7 @@ namespace BGEngine
             System.Windows.Forms.Application.Exit();
         }
 
-        const string EXPECTED_GH_VERSION_TAG = "0.4BETA";
+        const string EXPECTED_GH_VERSION_TAG = "1.0";
         private void CheckForUpdates()
         {
             try

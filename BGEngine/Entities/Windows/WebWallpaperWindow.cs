@@ -10,25 +10,19 @@ namespace BGEngine.Entities.Windows
     class WebWallpaperWindow : WallpaperWindow
     {
         BrowserForm _browser;
-        SimpleHTTPServer _server;
-        int _port;
-        string _uri;
-        WallpaperType _type;
+
         public WebWallpaperWindow(string uri, WallpaperType Type, int Width, int Height, int X, int Y) : base(Width, Height, X, Y)
         {
-            var url = "";
-            if(Type == WallpaperType.Website)
+            string url;
+            if (Type == WallpaperType.Website)
             {
                 url = uri;
             }
             else
             {
-                _port = new Random().Next(10000, 60000);
-                // create webserver
-                _uri = uri;
-                url = $"http://localhost:{_port}/";
-                _type = Type;
+                url = $"file://{uri}/index.html";
             }
+
             _browser = new BrowserForm(url);
         }
 
@@ -39,19 +33,11 @@ namespace BGEngine.Entities.Windows
 
         public override void Kill()
         {
-            if (_type == WallpaperType.Web)
-            {
-                _server.Stop();
-            }
             _browser.Dispose();
         }
 
         public override void Start()
         {
-            if (_type == WallpaperType.Web)
-            {
-                _server = new SimpleHTTPServer(_uri, _port);
-            }
             _browser.Show();
         }
     }
