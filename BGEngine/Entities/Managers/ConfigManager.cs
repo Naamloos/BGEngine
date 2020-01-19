@@ -39,6 +39,28 @@ namespace BGEngine.Entities.Managers
             return true;
         }
 
+        public bool GetCenterTaskbar()
+        {
+            return this._config.CenterTaskbar;
+        }
+
+        public void SetCenterTaskbar(bool enabled)
+        {
+            this._config.CenterTaskbar = enabled;
+            this.save();
+        }
+
+        public TaskbarMode GetTaskbarMode()
+        {
+            return this._config.TaskbarMode;
+        }
+
+        public void SetTaskbarMode(TaskbarMode mode)
+        {
+            this._config.TaskbarMode = mode;
+            this.save();
+        }
+
         public void SetSelectedWallpaper(string wallpaper)
         {
             this._config.SelectedWallpaper = wallpaper;

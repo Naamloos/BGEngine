@@ -6,7 +6,7 @@
         xmlns:gif="clr-namespace:XamlAnimatedGif;assembly=XamlAnimatedGif"
         xmlns:local="clr-namespace:BGEngine.Forms"
         mc:Ignorable="d"
-        Title="Settings" Height="525" Width="825.82" Topmost="True">
+        Title="Settings" Height="525" Width="825.82">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="19*"/>
@@ -20,7 +20,7 @@
             </ItemsControl.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical" >
+                    <StackPanel Orientation="Vertical" MaxWidth="150px" >
                         <Image gif:AnimationBehavior.SourceUri="{Binding ImageData}" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="UniformToFill" MaxWidth="150px" />
                         <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                     </StackPanel>
@@ -32,6 +32,9 @@
             <StackPanel>
                 <CheckBox Name="UseLwp" Content="Use Live Wallpaper" />
                 <CheckBox Name="Autostart" Content="Automatically start BGEngine" />
+                <CheckBox Name="Centertaskbar" Content="Center taskbar icons" />
+                <Label Content="Taskbar mode:"/>
+                <ComboBox Name="Taskbarmode" SelectionChanged="newSelection"/>
                 <Button Content="Exit BGEngine" Click="Button_Click_1"/>
             </StackPanel>
         </ScrollViewer>

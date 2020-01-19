@@ -114,7 +114,10 @@ namespace BGEngine
         public const int SM_CXSCREEN = 0;
         public const int SM_CYSCREEN = 1;
         public static IntPtr HWND_TOP = IntPtr.Zero;
-        public const int SWP_SHOWWINDOW = 64; // 0x0040
+        public const int SWP_SHOWWINDOW = 0x0040;
+        public const int SWP_NOSIZE = 0x0001;
+        public const int SWP_NOZORDER = 0x0004;
+        public const int SWP_ASYNCWINDOWPOS = 0x4000;
 
         [DllImport("user32.dll")]
         public static extern bool MoveWindow(IntPtr handle, int x, int y, int width, int height, bool redraw);
@@ -436,5 +439,46 @@ namespace BGEngine
             /// <summary>The window has a vertical scroll bar.</summary>
             WS_VSCROLL = 0x200000
         }
+
+
+        public struct WindowCompositionAttributeData
+        {
+            public WindowCompositionAttribute Attribute;
+            public IntPtr Data;
+            public int SizeOfData;
+        }
+
+        public enum WindowCompositionAttribute
+        {
+            WCA_ACCENT_POLICY = 19
+        }
+
+        public enum AccentState
+        {
+            ACCENT_DISABLED = 0,
+            ACCENT_ENABLE_GRADIENT = 1,
+            ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
+            ACCENT_ENABLE_BLURBEHIND = 3,
+            ACCENT_ENABLE_TRANSPARANT = 6,
+            ACCENT_ENABLE_ACRYLICBLURBEHIND = 4
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct AccentPolicy
+        {
+            public AccentState AccentState;
+            public int AccentFlags;
+            public int GradientColor;
+            public int AnimationId;
+        }
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
+
+        [DllImport("Shell32.dll")]
+        public static extern int SHChangeNotify(int eventId, int flags, IntPtr item1, IntPtr item2);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
     }
 }
